@@ -3,16 +3,17 @@ from flask_cors import CORS
 from PIL import Image, ImageDraw
 import os
 import random
+import base64
+from io import BytesIO
 
 app = Flask(__name__)
 CORS(app)
 
 # Функция для сохранения изображений на сервере (заменить на свою)
-def save_image(img):
-    img_name = f"random_{random.randint(1, 1000)}.png"
-    img_path = os.path.join("static", img_name)
-    img.save(img_path)
-    return f"http://84.201.139.219:5000/{img_path}" # адрес не меняем
+def image_to_base64(img):
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    return base64.b64encode(buffered.getvalue()).decode()
 
 # Функция для генерации случайного изображения
 def create_random_image():
@@ -41,7 +42,7 @@ def analyse():
     }
 
     # Генерация изображений - заменить на реальные
-    images = [save_image(create_random_image()) for _ in range(2)]
+    images = [image_to_base64(create_random_image()) for _ in range(2)]
 
     # Возвращение результата и URL изображений
     return jsonify({"result": result, "images": images})

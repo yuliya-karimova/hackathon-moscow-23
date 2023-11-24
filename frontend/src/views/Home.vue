@@ -1,10 +1,9 @@
 <template>
   <div>
     <!-- header -->
-    <div class="sticky top-0 bg-white z-30">
+    <div class="sticky top-0 bg-white z-30" :class="scrollHeight > 10 && 'shadow-md'">
       <div
-        class="mx-auto max-w-screen-xl px-8 py-4 flex gap-10 items-center text-xl uppercase font-medium text-sky-950 justify-between"
-        :class="scrollHeight > 10 && 'shadow-md'">
+        class="mx-auto max-w-screen-xl px-8 py-4 flex gap-10 items-center text-xl uppercase font-medium text-sky-950 justify-between">
         <div class="flex gap-10">
           <button class="w-16 hover:opacity-80" @click="scrollTo('top')">
             <img class="w-full" src="logo.svg" alt="home" />
