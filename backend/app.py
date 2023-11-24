@@ -30,21 +30,29 @@ def create_random_image():
 #   graphics: string[] // графики
 
 
-@app.route('/analyse')
+@app.route('/analyse', methods=['POST'])
 def analyse():
-    # Получение параметров x и y из запроса
-    city = request.args.get('city', '')  # название города, второй аргумент - значение по умолчанию
-    area = float(request.args.get('area', 0)) # площадь помещения
-    temperature = request.args.get('temperature', '') # температура
-    inflation = float(request.args.get('inflation', 0)) # инфляция
-    taxes = float(request.args.get('taxes', 0)) # налог на имущество
-    expenses = float(request.args.get('expenses', 0)) # объем затрат
+    # Получение параметров из запроса
+    data = request.json
+
+    city = data.get('city', '')  # название города, второй аргумент - значение по умолчанию
+    area = float(data.get('area', 0)) # площадь помещения
+    temperature = data.get('temperature', '') # температура
+    inflation = float(data.get('inflation', 0)) # инфляция
+    taxes = float(data.get('taxes', 0)) # налог на имущество
+    expenses = float(data.get('expenses', 0)) # объем затрат
 
     # Все вычисления - заменить на реальные
     result = {
         '2022': 0,
         '2023': 0,
         '2024': 0,
+        'city': city,
+        'area': area,
+        'temperature': temperature,
+        'inflation': inflation,
+        'taxes': taxes,
+        'expenses': expenses,
     }
 
     # Генерация изображений - заменить на реальные
