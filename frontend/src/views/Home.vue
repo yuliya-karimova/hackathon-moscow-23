@@ -1,24 +1,27 @@
 <template>
   <div>
     <!-- header -->
-    <div
-      class="mx-auto max-w-screen-xl px-8 py-4 flex gap-10 items-center text-xl uppercase font-medium text-sky-950 sticky top-0 bg-white z-30 justify-between"
-      :class="scrollHeight > 10 && 'shadow-md'">
-      <div class="flex gap-10">
-        <button class="w-16 hover:opacity-80" @click="scrollTo('top')">
-          <img class="w-full" src="logo.svg" alt="home" />
-        </button>
-        <button class="hover:opacity-80 transition duration-150" @click="scrollTo('analysis')">Анализ</button>
-        <button class="hover:opacity-80 transition duration-150" @click="scrollTo('about')">Как мы работаем</button>
+    <div class="sticky top-0 bg-white z-30">
+      <div
+        class="mx-auto max-w-screen-xl px-8 py-4 flex gap-10 items-center text-xl uppercase font-medium text-sky-950 justify-between"
+        :class="scrollHeight > 10 && 'shadow-md'">
+        <div class="flex gap-10">
+          <button class="w-16 hover:opacity-80" @click="scrollTo('top')">
+            <img class="w-full" src="logo.svg" alt="home" />
+          </button>
+          <button class="hover:opacity-80 transition duration-150" @click="scrollTo('about')">Как мы работаем</button>
+          <button class="hover:opacity-80 transition duration-150" @click="scrollTo('analysis')">Анализ</button>
+          <button class="hover:opacity-80 transition duration-150" @click="scrollTo('questions')">FAQ</button>
+        </div>
+        <button class="hover:opacity-80 transition duration-150" @click="scrollTo('contacts')">Контакты</button>
       </div>
-      <button class="hover:opacity-80 transition duration-150" @click="scrollTo('contacts')">Контакты</button>
     </div>
 
     <!-- main block -->
     <div class="flex mx-auto max-w-screen-xl px-8 py-16">
       <div class="w-1/2 uppercase z-10 space-y-10 py-20 flex-col justify-center">
         <div class="text-3xl sm:text-5xl font-bold text-sky-950">
-          Оценка эффективности вложений в содержание недвижимости
+          Оценка эффективности вложений в содержание недвижимости
         </div>
         <div class="flex gap-3 md:gap-6 flex-col md:flex-row">
           <button
@@ -48,7 +51,6 @@
         <HomeAbout />
       </div>
     </div>
-    <!-- <img class="w-full" src="bg/4.jpg" alt="" /> -->
 
     <!-- analysis block -->
     <div ref="analysisBlock" class="flex gap-6 mx-auto max-w-screen-xl px-8 py-16">
@@ -73,6 +75,13 @@
       </div>
       <div class="w-1/2 flex flex-col gap-2">
         <img v-for="item in cityData.graphics" :src="item" alt="graphic">
+      </div>
+    </div>
+
+    <!-- questions block -->
+    <div ref="questionsBlock" class="bg-gray-200 px-8 py-16">
+      <div class="mx-auto max-w-screen-xl">
+        <HomeQuestions />
       </div>
     </div>
     <!-- <div class="w-full h-40" :style="`background: center / cover no-repeat url('./bg-4.jpg');`"></div> -->
@@ -227,14 +236,21 @@
         </div>
       </div>
     </div> -->
+    <button
+      class="transition-all z-50 bg-orange-500 hover:bg-orange-400 text-white font-bold rounded-full fixed bottom-10 right-10 h-14 w-14 text-4xl flex items-center justify-center pb-1 hover:pb-2 duration-150"
+      :class="scrollHeight > 10 ? 'opacity-100' : 'opacity-0'" @click="scrollTo('top')">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+      </svg>
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-// import Card from "../components/home/Card.vue";
-// import Content from "../components/home/Content.vue";
 import { ref, onMounted, onUnmounted } from "vue";
 import HomeAbout from "../components/HomeAbout.vue";
+import HomeQuestions from "../components/HomeQuestions.vue";
 
 interface CityData {
   title: string // название города
@@ -262,10 +278,11 @@ const cityData: CityData = {
 
 const analysisBlock = ref<HTMLDivElement | undefined>(undefined)
 const aboutBlock = ref<HTMLDivElement | undefined>(undefined)
+const questionsBlock = ref<HTMLDivElement | undefined>(undefined)
 const scrollHeight = ref(0)
 
 const scrollTo = (id: string) => {
-  let top = undefined
+  let top = 0
 
   switch (id) {
     case 'analysis':
@@ -273,6 +290,9 @@ const scrollTo = (id: string) => {
       break;
     case 'about':
       top = (aboutBlock.value?.offsetTop || 0) - 100
+      break;
+    case 'questions':
+      top = (questionsBlock.value?.offsetTop || 0) - 100
       break;
     case 'top':
       break;
@@ -288,7 +308,6 @@ const scrollTo = (id: string) => {
 
 const updateScroll = () => {
   scrollHeight.value = window.scrollY || document.documentElement.scrollTop
-  console.log('🚀 ~ updateScroll ~ scrollHeight.value:', scrollHeight.value)
 }
 
 onMounted(() => {
