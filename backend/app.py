@@ -21,16 +21,33 @@ def create_random_image():
     draw.text((10, 10), "Random Image", fill=(255, 255, 255))
     return img
 
+#   title: string // название города
+#   temperature: string // температура
+#   inflation: string // инфляция
+#   taxes: string // налоги
+#   expenses: string // затраы
+#   area: string // площадь
+#   graphics: string[] // графики
+
+
 @app.route('/analyse')
 def analyse():
     # Получение параметров x и y из запроса
-    x = float(request.args.get('x', 0))  # Если x не указан, по умолчанию 0
-    y = float(request.args.get('y', 0))  # Если y не указан, по умолчанию 0
+    city = request.args.get('city', '')  # название города, второй аргумент - значение по умолчанию
+    area = float(request.args.get('area', 0)) # площадь помещения
+    temperature = request.args.get('temperature', '') # температура
+    inflation = float(request.args.get('inflation', 0)) # инфляция
+    taxes = float(request.args.get('taxes', 0)) # налог на имущество
+    expenses = float(request.args.get('expenses', 0)) # объем затрат
 
-    # Вычисление суммы
-    result = x + y
+    # Все вычисления - заменить на реальные
+    result = {
+        '2022': 0,
+        '2023': 0,
+        '2024': 0,
+    }
 
-    # Генерация двух изображений
+    # Генерация изображений - заменить на реальные
     images = [save_image(create_random_image()) for _ in range(2)]
 
     # Возвращение результата и URL изображений
