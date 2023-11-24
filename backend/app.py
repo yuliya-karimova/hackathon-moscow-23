@@ -5,6 +5,8 @@ import os
 import random
 import base64
 from io import BytesIO
+import pickle
+import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
@@ -34,11 +36,35 @@ def analyse():
     taxes = float(data.get('taxes', 0)) # налог на имущество
     expenses = float(data.get('expenses', 0)) # объем затрат
 
+    # код
+    dates = pd.date_range(start='2022-01-01', end='2024-12-01', freq='MS')
+    with open('dataframe.pkl', 'rb') as file:
+        pred_df = pickle.load(file)
+
+    # Убедитесь, что в pred_df достаточно строк для заполнения датами
+    if len(pred_df) <= len(dates):
+        # Присваивание дат в 'Дата проведения'
+        pred_df['Дата проведения'] = dates[:len(pred_df)]
+
+        # Обновление 'month' и 'year' на основе 'Дата проведения'
+        pred_df['month'] = pred_df['Дата проведения'].dt.month
+        pred_df['year'] = pred_df['Дата проведения'].dt.year
+    else:
+        print("Недостаточно дат для заполнения всех строк в pred_df")
+
+    # Показываем первые строки для проверки
+    pred_df['Общая площадь'] = area
+    # Загрузка модели из файла
+    with open('model.pkl', 'rb') as file:
+        loaded_model = pickle.load(file)
+    # pred_df.head()
+    y_pred = loaded_model.predict(pred_df)
+
     # Все вычисления - заменить на реальные
     result = {
-        '2022': 0,
-        '2023': 0,
-        '2024': 0,
+        '2022':y_pred[0:11].sum(),
+        '2023':y_pred[12:23].sum(),
+        '2024':y_pred[24:35].sum()
     }
 
     # Генерация изображений - заменить на реальные
