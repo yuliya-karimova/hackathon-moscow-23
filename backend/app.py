@@ -7,12 +7,12 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-# Функция для сохранения изображений на сервере
+# Функция для сохранения изображений на сервере (заменить на свою)
 def save_image(img):
     img_name = f"random_{random.randint(1, 1000)}.png"
     img_path = os.path.join("static", img_name)
     img.save(img_path)
-    return f"http://127.0.0.1:5000/{img_path}"
+    return f"http://84.201.139.219:5000/{img_path}" # адрес не меняем
 
 # Функция для генерации случайного изображения
 def create_random_image():
@@ -20,15 +20,6 @@ def create_random_image():
     draw = ImageDraw.Draw(img)
     draw.text((10, 10), "Random Image", fill=(255, 255, 255))
     return img
-
-#   title: string // название города
-#   temperature: string // температура
-#   inflation: string // инфляция
-#   taxes: string // налоги
-#   expenses: string // затраы
-#   area: string // площадь
-#   graphics: string[] // графики
-
 
 @app.route('/analyse', methods=['POST'])
 def analyse():
@@ -47,12 +38,6 @@ def analyse():
         '2022': 0,
         '2023': 0,
         '2024': 0,
-        'city': city,
-        'area': area,
-        'temperature': temperature,
-        'inflation': inflation,
-        'taxes': taxes,
-        'expenses': expenses,
     }
 
     # Генерация изображений - заменить на реальные
