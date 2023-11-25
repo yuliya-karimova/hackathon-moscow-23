@@ -9,7 +9,7 @@ import pickle
 import pandas as pd
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 # Функция для сохранения изображений на сервере (заменить на свою)
 def image_to_base64(img):
