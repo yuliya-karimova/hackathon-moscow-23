@@ -97,7 +97,7 @@ const submit = async () => {
 
 
   try {
-    const response = await axios.post('http://127.0.0.1:5000/analyse', {
+    const response = await axios.post('http://84.201.139.219:5000/analyse', {
       city: form.city,
       area: form.area,
       temperature: form.temperature,

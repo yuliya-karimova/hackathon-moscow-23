@@ -8,7 +8,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/hackathon-moscow-23/'),
+  history: createWebHistory('/'),
   routes
 })
 
