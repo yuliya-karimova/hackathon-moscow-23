@@ -80,7 +80,7 @@
       </div>
     </div>
     <div class="w-full flex justify-center">
-      <img class="w-full max-w-xl" src="5.jpg" alt="home" />
+      <img class="w-full max-w-xl" src="/5.jpg" alt="home" />
     </div>
   </div>
 </template>

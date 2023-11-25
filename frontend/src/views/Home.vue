@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="flex items-center">
-          <img class="w-full" src="/home_pic.jpg" alt="home" />
+          <img class="w-full" src="/7.jpg" alt="home" />
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="w-full flex justify-center pt-16">
-      <img class="w-full" src="1.jpg" alt="home" />
+      <img class="w-full" src="/1.jpg" alt="home" />
     </div>
 
     <button
