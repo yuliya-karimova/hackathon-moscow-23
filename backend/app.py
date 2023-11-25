@@ -13,7 +13,7 @@ CORS(app, resources={r"/*": {"origins": "*"}}, methods=['GET', 'POST', 'DELETE',
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('path_to_your_build_folder/assets', filename)
+    return send_from_directory('dist/assets', filename)
 
 @app.route('/home')
 def home():
