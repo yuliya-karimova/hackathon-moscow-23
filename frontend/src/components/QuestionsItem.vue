@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-3">
     <div class="font-bold text-xl">{{ question.title }}</div>
-    <div>{{ question.answer }}</div>
+    <div class="text-gray-600">{{ question.answer }}</div>
   </div>
 </template>
 

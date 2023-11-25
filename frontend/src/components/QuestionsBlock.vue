@@ -1,16 +1,16 @@
 <template>
-  <div class="flex gap-6">
-    <div class="w-1/4 font-bold text-4xl">
+  <div class="flex flex-col md:flex-row gap-6">
+    <div class="md:w-1/4 font-bold text-4xl">
       Вопросы и ответы
     </div>
-    <div class="w-3/4 flex flex-col gap-10">
-      <HomeQuestionsItem v-for="question in questions" :key="question.title" :question="question" />
+    <div class="md:w-3/4 flex flex-col gap-10">
+      <QuestionsItem v-for="question in questions" :key="question.title" :question="question" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import HomeQuestionsItem from './HomeQuestionsItem.vue'
+import QuestionsItem from './QuestionsItem.vue'
 
 const questions = [
   {
