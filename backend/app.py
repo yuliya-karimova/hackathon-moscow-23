@@ -77,4 +77,4 @@ def analyse():
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', ssl_context=('cert/certificate.crt', 'cert/privateKey.key'))
+    app.run(debug=True, host='0.0.0.0')

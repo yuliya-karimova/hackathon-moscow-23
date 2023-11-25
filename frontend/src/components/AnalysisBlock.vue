@@ -97,7 +97,7 @@ const submit = async () => {
 
 
   try {
-    const response = await axios.post('https://84.201.139.219:5000/analyse', {
+    const response = await axios.post('http://127.0.0.1:5000/analyse', {
       city: form.city,
       area: form.area,
       temperature: form.temperature,
@@ -107,7 +107,6 @@ const submit = async () => {
     }) as { data: ResultInterface }
 
     result.value = response.data
-    scrollToResult()
   } catch (error: any) {
     console.error('Error making the request:', error);
 
@@ -123,34 +122,43 @@ const submit = async () => {
 }
 
 const CitiesOptions = [
-  { label: 'Анадырь', value: 'Анадырь' },
-  { label: 'Билибино', value: 'Билибино' },
-  { label: 'Биробиджан', value: 'Биробиджан' },
-  { label: 'Благовещенск', value: 'Благовещенск' },
-  { label: 'Владивосток', value: 'Владивосток' },
-  { label: 'Вольно-Надеждинское', value: 'Вольно-Надеждинское' },
-  { label: 'Горные ключи', value: 'Горные ключи' },
-  { label: 'Ключи', value: 'Ключи' },
-  { label: 'Комсомольск-на-Амуре', value: 'Комсомольск-на-Амуре' },
-  { label: 'Ленск', value: 'Ленск' },
-  { label: 'Магадан', value: 'Магадан' },
-  { label: 'Находка', value: 'Находка' },
-  { label: 'Паратунка', value: 'Паратунка' },
-  { label: 'Петропавловск-Камчатский', value: 'Петропавловск-Камчатский' },
-  { label: 'Покровск', value: 'Покровск' },
-  { label: 'Тында', value: 'Тында' },
-  { label: 'Уссурийск', value: 'Уссурийск' },
-  { label: 'Усть-Камчатск', value: 'Усть-Камчатск' },
-  { label: 'Усть-Нера', value: 'Усть-Нера' },
-  { label: 'Усть-Омчуг', value: 'Усть-Омчуг' },
-  { label: 'Хабаровск', value: 'Хабаровск' },
-  { label: 'Чурапча', value: 'Чурапча' },
-  { label: 'Южно-Сахалинск', value: 'Южно-Сахалинск' },
-  { label: 'Якутск', value: 'Якутск' }
-];
-
-const scrollToResult = () => {
-  const top = resultBlock.value?.offsetTop || 0
-  window.scrollTo({ left: 0, top: top, behavior: "smooth" })
-}
+  { value: 'Александровск-Сахалинский', label: 'Александровск-Сахалинский' },
+  { value: 'Анадырь', label: 'Анадырь' },
+  { value: 'Билибино', label: 'Билибино' },
+  { value: 'Биробиджан', label: 'Биробиджан' },
+  { value: 'Благовещенск', label: 'Благовещенск' },
+  { value: 'Вилючинск', label: 'Вилючинск' },
+  { value: 'Владивосток', label: 'Владивосток' },
+  { value: 'Вольно-Надеждинское', label: 'Вольно-Надеждинское' },
+  { value: 'Горные ключи', label: 'Горные ключи' },
+  { value: 'Дальнереченск', label: 'Дальнереченск' },
+  { value: 'Ключи', label: 'Ключи' },
+  { value: 'Комсомольск-на-Амуре', label: 'Комсомольск-на-Амуре' },
+  { value: 'Курильск', label: 'Курильск' },
+  { value: 'Лаврентия', label: 'Лаврентия' },
+  { value: 'Ленск', label: 'Ленск' },
+  { value: 'Магадан', label: 'Магадан' },
+  { value: 'Находка', label: 'Находка' },
+  { value: 'Нерюнгри', label: 'Нерюнгри' },
+  { value: 'Паратунка', label: 'Паратунка' },
+  { value: 'Партизанск', label: 'Партизанск' },
+  { value: 'Петропавловск-Камчатский', label: 'Петропавловск-Камчатский' },
+  { value: 'Покровск', label: 'Покровск' },
+  { value: 'Провидения', label: 'Провидения' },
+  { value: 'Свободный', label: 'Свободный' },
+  { value: 'Сковородино', label: 'Сковородино' },
+  { value: 'Славянка', label: 'Славянка' },
+  { value: 'Спасск-Дальний', label: 'Спасск-Дальний' },
+  { value: 'Тиличики', label: 'Тиличики' },
+  { value: 'Тында', label: 'Тында' },
+  { value: 'Уссурийск', label: 'Уссурийск' },
+  { value: 'Усть-Камчатск', label: 'Усть-Камчатск' },
+  { value: 'Усть-Нера', label: 'Усть-Нера' },
+  { value: 'Усть-Омчуг', label: 'Усть-Омчуг' },
+  { value: 'Хабаровск', label: 'Хабаровск' },
+  { value: 'Чурапча', label: 'Чурапча' },
+  { value: 'Эгвекинот', label: 'Эгвекинот' },
+  { value: 'Южно-Сахалинск', label: 'Южно-Сахалинск' },
+  { value: 'Якутск', label: 'Якутск' }
+]
 </script>
