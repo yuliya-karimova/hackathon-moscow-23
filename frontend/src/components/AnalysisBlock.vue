@@ -34,21 +34,53 @@
     </div>
     <div ref="resultBlock" v-if="result" class="w-full flex flex-col items-center gap-12">
       <div class="text-4xl text-sky-950 text-center w-full font-bold">Результаты анализа</div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
-        <div class="flex flex-col gap-4 text-xl">
-          <div class="text-2xl font-bold">Прогноз по годам</div>
-          <div><span class="font-bold">2022: </span>{{ result.result[2022].toFixed(0) }} руб.</div>
-          <div><span class="font-bold">2023: </span>{{ result.result[2023].toFixed(0) }} руб.</div>
-          <div><span class="font-bold">2024: </span>{{ result.result[2024].toFixed(0) }} руб.</div>
-        </div>
-        <div class="w-full flex flex-col gap-4 md:col-span-2">
-          <div class="text-2xl font-bold">Визуализация данных</div>
-          <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
-            <img class="w-full" :src="`data:image/png;base64,${result.images[0]}`" alt="home" />
-            <img class="w-full" :src="`data:image/png;base64,${result.images[1]}`" alt="home" />
+      <div class="flex flex-col gap-16 w-full">
+        <div class="space-y-6">
+          <div class="text-2xl font-bold text-center">Прогноз по годам</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-xl">
+            <div class="space-y-2 bg-gray-200 p-6 rounded-xl">
+              <div class="font-bold">Электричество</div>
+              <div>
+                <div><span class="font-bold">2022: </span>{{ result.result.result_el[2022].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2023: </span>{{ result.result.result_el[2023].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2024: </span>{{ result.result.result_el[2024].toFixed(0) }} руб.</div>
+              </div>
+            </div>
+            <div class="space-y-2 bg-gray-200 p-6 rounded-xl">
+              <div class="font-bold">Газ</div>
+              <div>
+                <div><span class="font-bold">2022: </span>{{ result.result.result_gaz[2022].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2023: </span>{{ result.result.result_gaz[2023].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2024: </span>{{ result.result.result_gaz[2024].toFixed(0) }} руб.</div>
+              </div>
+            </div>
+            <div class="space-y-2 bg-gray-200 p-6 rounded-xl">
+              <div class="font-bold">Тепло</div>
+              <div>
+                <div><span class="font-bold">2022: </span>{{ result.result.result_teplo[2022].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2023: </span>{{ result.result.result_teplo[2023].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2024: </span>{{ result.result.result_teplo[2024].toFixed(0) }} руб.</div>
+              </div>
+            </div>
+            <div class="space-y-2 bg-gray-200 p-6 rounded-xl">
+              <div class="font-bold">Вода</div>
+              <div>
+                <div><span class="font-bold">2022: </span>{{ result.result.result_voda[2022].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2023: </span>{{ result.result.result_voda[2023].toFixed(0) }} руб.</div>
+                <div><span class="font-bold">2024: </span>{{ result.result.result_voda[2024].toFixed(0) }} руб.</div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="w-full flex flex-col gap-4 md:col-span-2">
+          <div class="text-2xl font-bold text-center">Визуализация данных</div>
+          <img class="w-full" :src="`data:image/png;base64,${result.images[0]}`" alt="home" />
+        </div>
       </div>
+    </div>
+    <div class="w-full flex justify-center">
+      <img class="w-full max-w-xl" src="5.jpg" alt="home" />
     </div>
   </div>
 </template>
@@ -60,11 +92,18 @@ import BaseSelect from './base/BaseSelect.vue';
 import BaseNumberSlider from './base/BaseNumberSlider.vue';
 import axios from 'axios';
 
+interface YearData {
+  2022: number,
+  2023: number,
+  2024: number,
+}
+
 interface ResultInterface {
   result: {
-    2022: number,
-    2023: number,
-    2024: number,
+    result_el: YearData,
+    result_gaz: YearData,
+    result_teplo: YearData,
+    result_voda: YearData,
   }
   images: string[]
 }
