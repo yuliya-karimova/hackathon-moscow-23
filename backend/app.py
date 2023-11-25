@@ -71,7 +71,10 @@ def analyse():
     images = [image_to_base64(create_random_image()) for _ in range(2)]
 
     # Возвращение результата и URL изображений
-    return jsonify({"result": result, "images": images})
+    # return jsonify({"result": result, "images": images})
+    response = jsonify({"result": result, "images": images})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
