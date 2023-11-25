@@ -4,7 +4,7 @@
     <div class="sticky top-0 bg-white z-30 px-8 py-4" :class="scrollHeight > 10 && 'shadow-md'">
       <div class="mx-auto max-w-screen-xl flex flex-col sm:flex-row gap-x-4 gap-y-2 sm:gap-10 text-lg sm:text-xl items-center uppercase font-medium text-sky-950 justify-between">
         <button class="w-10 shrink-0 sm:w-16 hover:opacity-80" @click="scrollTo('top')">
-          <img class="w-full" src="logo.svg" alt="home" />
+          <img class="w-full" src="/logo.svg" alt="home" />
         </button>
         <button class="hover:opacity-80 transition duration-150" @click="scrollTo('about')">Как мы работаем</button>
         <button class="hover:opacity-80 transition duration-150" @click="scrollTo('analysis')">Анализ</button>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="w-1/2 flex items-center">
-          <img class="w-full" src="home_pic.jpg" alt="home" />
+          <img class="w-full" src="/home_pic.jpg" alt="home" />
         </div>
       </div>
     </div>
