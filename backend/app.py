@@ -11,10 +11,6 @@ import pandas as pd
 app = Flask(__name__, static_folder='dist')
 CORS(app, resources={r"/*": {"origins": "*"}}, methods=['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'])
 
-@app.route('/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('dist', filename)
-
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
     return send_from_directory('dist/assets', filename)
